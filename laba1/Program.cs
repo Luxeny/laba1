@@ -4,20 +4,38 @@ class Program
 {
     static void Main()
     {
-        double a = 10;
-        double b = 8;
-        double L = 20;
-        double r = 3;
-        double l = 15;
+        Console.WriteLine("Введите параметры:");
 
-        double v1 = a * b * L;
-        double v2 = 3.14 * r * r * l;
-        double waste = v1 - v2;
-        double percent = (waste / v1) * 100;
+        Console.Write("a = ");
+        double a = double.Parse(Console.ReadLine());
 
-        Console.WriteLine("Объем исходного: " + v1);
-        Console.WriteLine("Объем выточенного: " + v2);
-        Console.WriteLine("Отходы: " + waste);
-        Console.WriteLine("Процент: " + percent + "%");
+        Console.Write("b = ");
+        double b = double.Parse(Console.ReadLine());
+
+        Console.Write("L = ");
+        double L = double.Parse(Console.ReadLine());
+
+        Console.Write("r = ");
+        double r = double.Parse(Console.ReadLine());
+
+        Console.Write("l = ");
+        double l = double.Parse(Console.ReadLine());
+
+        if (r >= a / 2 || r >= b / 2 || l > L)
+        {
+            Console.WriteLine("Ошибка: не соблюдены условия задачи");
+            return;
+        }
+
+        double originalVolume = a * b * L;
+        double drilledVolume = Math.PI * Math.Pow(r, 2) * l;
+        double wasteVolume = originalVolume - drilledVolume;
+        double wastePercentage = (wasteVolume / originalVolume) * 100;
+
+        Console.WriteLine($"\nРезультаты:");
+        Console.WriteLine($"Исходный объем: {originalVolume:F2}");
+        Console.WriteLine($"Выточенный объем: {drilledVolume:F2}");
+        Console.WriteLine($"Отходы: {wasteVolume:F2}");
+        Console.WriteLine($"Процент отходов: {wastePercentage:F1}%");
     }
 }
